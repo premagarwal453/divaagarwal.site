@@ -1,49 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Diva Agarwal 🌸</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #ffe4ec, #fff7d6);
-      text-align: center;
-      padding: 40px;
-      color: #333;
-    }
-    h1 {
-      font-size: 2.5rem;
-    }
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 30px;
-      max-width: 600px;
-      margin: auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    img {
-      width: 180px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      opacity: 0.6;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diva's First 3 Years ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff4e6 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #ff69b4;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.5);
+        }
+
+        .header p {
+            color: #ff1493;
+            font-size: 1.3em;
+        }
+
+        .age-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .age-tab {
+            padding: 15px 30px;
+            background: white;
+            border: 3px solid #ffb6c1;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff69b4;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        .age-tab:hover {
+            background: #ff69b4;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+        }
+
+        .age-tab.active {
+            background: #ff69b4;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .gallery-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .gallery-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+        }
+
+        .photo-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photo-info h3 {
+            color: #ff69b4;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+        }
+
+        .photo-info p {
+            color: #ff1493;
+            font-size: 0.95em;
+        }
+
+        .upload-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+            text-align: center;
+        }
+
+        .upload-section h2 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
+            background: #ff69b4;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .upload-btn:hover {
+            background: #ff1493;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .instructions {
+            background: #fff4e6;
+            border-left: 5px solid #ff69b4;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 10px;
+        }
+
+        .instructions h3 {
+            color: #ff69b4;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            color: #ff1493;
+            line-height: 1.8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #ff69b4;
+            font-size: 1.1em;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <img src="images1/diva-1.jpeg" alt="Diva" />
-    <h1>Diva Agarwal 🌈</h1>
-    <p>Born with magic, smiles, and unlimited energy 💫</p>
-  </div>
+    <div class="header">
+        <h1>✨ Diva's Magical Journey ✨</h1>
+        <p>Growing up, one smile at a time 💕</p>
+    </div>
 
-  <footer>
-    ❤️
-  </footer>
+    <div class="age-tabs">
+        <div class="age-tab active" onclick="showAge(0)">👶 Age 0</div>
+        <div class="age-tab" onclick="showAge(1)">🍼 Age 1</div>
+        <div class="age-tab" onclick="showAge(2)">🎈 Age 2</div>
+        <div class="age-tab" onclick="showAge(3)">🎂 Age 3</div>
+    </div>
+
+    <div class="gallery-section active" id="age0">
+        <div class="photo-grid">
+            <div class="photo-card">
+                <div class="photo-placeholder">👶</div>
+                <div class="photo-info">
+                    <h3>First Days</h3>
+                    <p>Add your precious newborn photos here</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">🍼</div>
+                <div class="photo-info">
+                    <h3>Tiny Toes</h3>
+                    <p>Those adorable baby moments</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">😴</div>
+                <div class="photo-info">
+                    <h3>Sweet Dreams</h3>
+                    <p>Peaceful sleeping moments</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">💕</div>
+                <div class="photo-info">
+                    <h3>First Smile</h3>
+                    <p>That magical first smile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-section" id="age1">
+        <div class="photo-grid">
+            <div class="photo-card">
+                <div class="photo-placeholder">🎂</div>
+                <div class="photo-info">
+                    <h3>First Birthday</h3>
+                    <p>Celebrating one wonderful year</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">👣</div>
+                <div class="photo-info">
+                    <h3>First Steps</h3>
+                    <p>Learning to walk</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">🧸</div>
+                <div class="photo-info">
+                    <h3>Playtime</h3>
+                    <p>Adventures with toys</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">🌟</div>
+                <div class="photo-info">
+                    <h3>Growing Up</h3>
+                    <p>So many milestones</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-section" id="age2">
+        <div class="photo-grid">
+            <div class="photo-card">
+                <div class="photo-placeholder">🎉</div>
+                <div class="photo-info">
+                    <h3>Second Birthday</h3>
+                    <p>Two years of joy</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">🎨</div>
+                <div class="photo-info">
+                    <h3>Creative Time</h3>
+                    <p>Little artist at work</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">🌈</div>
+                <div class="photo-info">
+                    <h3>Adventures</h3>
+                    <p>Exploring the world</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">💖</div>
+                <div class="photo-info">
+                    <h3>Special Moments</h3>
+                    <p>Memories to treasure</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-section" id="age3">
+        <div class="photo-grid">
+            <div class="photo-card">
+                <div class="photo-placeholder">🎊</div>
+                <div class="photo-info">
+                    <h3>Third Birthday</h3>
+                    <p>Three years of magic</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">🌸</div>
+                <div class="photo-info">
+                    <h3>Big Girl Now</h3>
+                    <p>Growing so fast</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">🎪</div>
+                <div class="photo-info">
+                    <h3>Fun Times</h3>
+                    <p>Playing and learning</p>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-placeholder">⭐</div>
+                <div class="photo-info">
+                    <h3>Little Star</h3>
+                    <p>Shining bright every day</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="upload-section">
+        <h2>📸 Ready to Add Real Photos?</h2>
+        <p style="color: #ff1493; margin: 20px 0;">This is a template! Replace the placeholder photos with Diva's actual photos.</p>
+        <button class="upload-btn" onclick="alert('To add photos:\n\n1. Edit the HTML file\n2. Replace photo-placeholder divs with <img> tags\n3. Upload photos to your hosting\n4. Update the src attributes with photo URLs')">How to Add Photos</button>
+    </div>
+
+    <div class="instructions">
+        <h3>🌟 How to Customize This Website:</h3>
+        <ol>
+            <li>Save this HTML file</li>
+            <li>Upload your photos to your web hosting (same place as this HTML file)</li>
+            <li>Replace each <code>&lt;div class="photo-placeholder"&gt;</code> with <code>&lt;img src="your-photo.jpg" alt="Description"&gt;</code></li>
+            <li>Update the photo titles and descriptions to match your photos</li>
+            <li>Add more photo cards by copying and pasting the photo-card div structure</li>
+            <li>Upload everything to divaagarwal.site</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        Made with 💕 for the sweetest little sister<br>
+        © 2026 Diva's Journey
+    </div>
+
+    <script>
+        function showAge(age) {
+            const tabs = document.querySelectorAll('.age-tab');
+            const sections = document.querySelectorAll('.gallery-section');
+            
+            tabs.forEach((tab, i) => {
+                if (i === age) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            sections.forEach((section, i) => {
+                if (i === age) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
